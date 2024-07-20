@@ -15,11 +15,6 @@ case $1 in
   github) git clone git@github.com:$2 ;;
   ytaudio) yt-dlp -x $2 -o $3 ;;
   shellsetup) echo "$TOOL_SHELL_SETUP" ;;
-  help) 
-    [[ -n $2 ]] \
-      && awk -v opt="$2" \
-         "BEGIN{p=0};\$1~opt\")\"{p=1};p{print};\$0~\";;\$\"{p=0}" \
-         $(realpath $0) \
-      || batcat $(realpath $0) ;;
+  help) [[ -n $2 ]] && awk -v opt="$2" "BEGIN{p=0};\$1~opt\")\"{p=1};p{print};\$0~\";;\$\"{p=0}" $(realpath $0) || batcat $(realpath $0) ;;
   *) echo "I don't know that one." ;;
 esac
