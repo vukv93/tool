@@ -15,6 +15,8 @@ case $1 in
   github) git clone git@github.com:$2 ;;
   ytaudio) yt-dlp -x $2 -o $3 ;;
   shellsetup) echo "$TOOL_SHELL_SETUP" ;;
+  gsave) git add . && git commit -m "$2" && git log --stat -1 ;;
   help) [[ -n $2 ]] && awk -v opt="$2" "BEGIN{p=0};\$1~opt\")\"{p=1};p{print};\$0~\";;\$\"{p=0}" $(realpath $0) || batcat $(realpath $0) ;;
+  cp) xclip -selection clipboard -i < $2 ;;
   *) echo "I don't know that one." ;;
 esac
